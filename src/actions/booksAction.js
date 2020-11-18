@@ -8,7 +8,7 @@ export const fetchBooks = (book_name) => async (dispatch) => {
   dispatch({
     type: 'FETCH_SEARCHED',
     payload: {
-      searched: searchedBooksData.data,
+      searched: searchedBooksData.data.items,
     },
   });
 };
