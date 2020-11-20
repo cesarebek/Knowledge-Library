@@ -2,10 +2,20 @@ import React from 'react';
 //Styles and animation
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+//Actions
+import { loadDetail } from '../actions/detailAction';
+//import Redux
+import { useDispatch } from 'react-redux';
 
-const Book = ({ title, authors, image }) => {
+const Book = ({ title, authors, image, id }) => {
+  const dispatch = useDispatch();
+
+  const detailHandler = () => {
+    dispatch(loadDetail(id));
+  };
+
   return (
-    <Card>
+    <Card onClick={detailHandler}>
       <Info>
         <h3>{title}</h3>
         <h3>{authors}</h3>
@@ -27,7 +37,6 @@ const Card = styled(motion.div)`
 `;
 const Info = styled(motion.div)`
   text-align: center;
-  font-size: ;
 `;
 const Cover = styled(motion.div)`
   text-align: center;

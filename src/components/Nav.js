@@ -37,16 +37,15 @@ const Nav = () => {
 const StyledNav = styled(motion.div)`
   padding: 3rem 0rem;
   text-align: center;
-    input {
+  input {
     width: 30%;
     font-size: 1.5rem;
-    padding: 0.5rem ;
+    padding: 0.5rem;
     border: none;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
     outline: none;
     font-weight: 500;
     font-family: 'Montserrat', sans-serif;
-    
   }
   button {
     font-size: 1.5rem;
@@ -56,5 +55,6 @@ const StyledNav = styled(motion.div)`
     cursor: pointer;
     background: #f5d554;
     color: white;
+  }
 `;
 export default Nav;

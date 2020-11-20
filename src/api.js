@@ -6,3 +6,6 @@ const base_url = 'https://www.googleapis.com/books';
 
 export const searchedBooksURL = (book_name) =>
   `${base_url}/v1/volumes?q=${book_name}&${apiKey}`;
+
+export const bookDetailsURL = (book_id) =>
+  `${base_url}/v1/volumes/${book_id}?${apiKey}`;
