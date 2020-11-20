@@ -4,6 +4,10 @@ import axios from 'axios';
 import { bookDetailsURL } from '../api';
 
 export const loadDetail = (id) => async (dispatch) => {
+  dispatch({
+    type: 'LOADING_DETAIL',
+  });
+
   const bookDetailsData = await axios.get(bookDetailsURL(id));
 
   dispatch({

@@ -4,25 +4,31 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 //Actions
 import { loadDetail } from '../actions/detailAction';
-//import Redux
+//Redux
 import { useDispatch } from 'react-redux';
+//Route
+import { Link } from 'react-router-dom';
 
 const Book = ({ title, authors, image, id }) => {
   const dispatch = useDispatch();
 
   const detailHandler = () => {
+    //This prevent the scrolling of the home when details are opened
+    document.body.style.overflow = 'hidden';
     dispatch(loadDetail(id));
   };
 
   return (
     <Card onClick={detailHandler}>
-      <Info>
-        <h3>{title}</h3>
-        <h3>{authors}</h3>
-      </Info>
-      <Cover>
-        <img src={image} alt={image} />
-      </Cover>
+      <Link to={`/game/${id}`}>
+        <Info>
+          <h3>{title}</h3>
+          <h3>{authors}</h3>
+        </Info>
+        <Cover>
+          <img src={image} alt={image} />
+        </Cover>
+      </Link>
     </Card>
   );
 };
@@ -34,6 +40,7 @@ const Card = styled(motion.div)`
   padding: 2rem 1.5rem;
   border-radius: 2rem;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
 `;
 const Info = styled(motion.div)`
   text-align: center;
