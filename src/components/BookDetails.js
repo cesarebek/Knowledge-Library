@@ -10,6 +10,7 @@ import { useHistory } from 'react-router-dom';
 const BookDetails = () => {
   //Exit Detail
   const history = useHistory();
+
   const exitDetailHandler = (e) => {
     const element = e.target;
     if (element.classList.contains('shadow')) {
@@ -19,9 +20,10 @@ const BookDetails = () => {
   };
 
   const { bookDetail, isLoading } = useSelector((state) => state.details);
-
   return (
     <>
+      {/* isLoading STATE allows me to show the details ONLY when detailsData area correctly
+      fetched and ready to be rendered without inccoring in undefined errors. */}
       {!isLoading && (
         <CardShadow onClick={exitDetailHandler} className="shadow">
           <Details>
@@ -30,9 +32,18 @@ const BookDetails = () => {
               alt="book cover"
             />
             <h2>TITLE:</h2>
-            <h1>{bookDetail.volumeInfo.title}</h1>
+            <h3>{bookDetail.volumeInfo.title}</h3>
+            <h2>RATING:</h2>
+            <h3>{bookDetail.volumeInfo.averageRating}</h3>
+            <h2>Language:</h2>
+            <h3>{bookDetail.volumeInfo.language.toUpperCase()}</h3>
+            <h2>PUBLISHER:</h2>
+            <h3>{bookDetail.volumeInfo.publisher}</h3>
+            <h2>PUBLISH DATE:</h2>
+            <h3>{bookDetail.volumeInfo.publishedDate}</h3>
+            <h3>Page Count: {bookDetail.volumeInfo.pageCount} pages</h3>
             <h2>DESCRIPTION:</h2>
-            <h1>{bookDetail.volumeInfo.description}</h1>
+            <h3>{bookDetail.volumeInfo.description}</h3>
           </Details>
         </CardShadow>
       )}
@@ -50,14 +61,20 @@ const CardShadow = styled(motion.div)`
   z-index: 10;
 `;
 const Details = styled(motion.div)`
-  width: 80%;
+  width: 80vw;
   border-radius: 1rem;
   padding: 2rem 5rem;
   background: white;
   position: absolute;
   top: 5%;
-  bottom: 5%;
-  left: 10%;
+  left: 50%;
+  transform: translateX(-50%);
   color: black;
+  h3 {
+    padding-bottom: 1rem;
+  }
+  img {
+    text-align: center;
+  }
 `;
 export default BookDetails;

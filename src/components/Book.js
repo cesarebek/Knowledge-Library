@@ -21,34 +21,43 @@ const Book = ({ title, authors, image, id }) => {
   return (
     <Card onClick={detailHandler}>
       <Link to={`/game/${id}`}>
-        <Info>
-          <h3>{title}</h3>
-          <h3>{authors}</h3>
-        </Info>
-        <Cover>
+        <Description>
           <img src={image} alt={image} />
-        </Cover>
+          <Info>
+            <h2>Title:</h2>
+            <h3>{title}</h3>
+            <h2>Author:</h2>
+            <h3>{authors}</h3>
+          </Info>
+        </Description>
       </Link>
     </Card>
   );
 };
 
 const Card = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 2rem 1.5rem;
-  border-radius: 2rem;
+  overflow: hidden;
+  margin-bottom: 3rem;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
+  background-color: #fcfcfb;
   cursor: pointer;
+  a {
+    text-decoration: none;
+  }
+`;
+const Description = styled(motion.div)`
+  display: flex;
+  img {
+    height: 30vh;
+  }
 `;
 const Info = styled(motion.div)`
-  text-align: center;
-`;
-const Cover = styled(motion.div)`
-  text-align: center;
-  img {
-    min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  h3 {
+    padding-bottom: 2rem;
   }
 `;
 

@@ -10,15 +10,15 @@ body{
     font-family: 'Montserrat', sans-serif;
 }
 h2{
-    font-size: 3rem;
+    font-size: 2rem;
     font-family: "Abril Fatface";
     font-weight: lighter;
     color: #333;
 }
 h3{
     font-size: 1.3rem;
-    color: #333;
-    padding: 1.5rem 0;
+    color: #252525;
+    
 
 }
 p{
