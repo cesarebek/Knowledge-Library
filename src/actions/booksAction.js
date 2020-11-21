@@ -3,6 +3,10 @@ import axios from 'axios';
 import { searchedBooksURL } from '../api';
 
 export const fetchBooks = (book_name) => async (dispatch) => {
+  dispatch({
+    type: 'BOOK_LOADING',
+  });
+
   const searchedBooksData = await axios.get(searchedBooksURL(book_name));
 
   dispatch({

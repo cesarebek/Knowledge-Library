@@ -15,28 +15,30 @@ import { useLocation } from 'react-router-dom';
 const Home = () => {
   const location = useLocation();
   const pathId = location.pathname.split('/')[2];
-  const { searched } = useSelector((state) => state.books);
+  const { searched, bookLoading } = useSelector((state) => state.books);
 
   return (
     <>
       <Nav />
-      <BookList>
-        <AnimateSharedLayout type="crossfade">
-          <AnimatePresence>
-            {pathId && <BookDetails id={pathId} />}
-          </AnimatePresence>
-          {searched.map((book) => (
-            <Book
-              title={book.volumeInfo.title}
-              authors={book.volumeInfo.authors}
-              image={book.volumeInfo.imageLinks}
-              id={book.id}
-              key={book.id}
-            />
-          ))}
-        </AnimateSharedLayout>
-        <Ragazza />
-      </BookList>
+      {!bookLoading && (
+        <BookList>
+          <AnimateSharedLayout type="crossfade">
+            <AnimatePresence>
+              {pathId && <BookDetails id={pathId} />}
+            </AnimatePresence>
+            {searched.map((book) => (
+              <Book
+                title={book.volumeInfo.title}
+                authors={book.volumeInfo.authors}
+                image={book.volumeInfo.imageLinks}
+                id={book.id}
+                key={book.id}
+              />
+            ))}
+          </AnimateSharedLayout>
+        </BookList>
+      )}
+      <Ragazza />
     </>
   );
 };
