@@ -14,13 +14,17 @@ h2{
     font-family: "Abril Fatface";
     font-weight: lighter;
     color: #333;
+    @media (max-width: 700px) {
+    font-size: 1.4rem;
+    }
 }
 h3{
     font-size: 1.2rem;
     color: #252525;
     font-weight: 500;
-    
-
+    @media (max-width: 700px) {
+    font-size: 1rem;
+    }
 }
 p{
     font-size: 1.2rem;

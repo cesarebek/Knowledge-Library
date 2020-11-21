@@ -9,6 +9,8 @@ import { motion } from 'framer-motion';
 //FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
+//Animations
+import { fadeIn } from '../animation';
 
 const Nav = () => {
   //FETCH books from API
@@ -22,11 +24,14 @@ const Nav = () => {
   //Submits the request with "textInput" value to the API
   const submitSearch = (e) => {
     e.preventDefault();
-    dispatch(fetchBooks(textInput));
+    if (textInput.trim() === '') {
+    } else {
+      dispatch(fetchBooks(textInput));
+    }
     setTextInput('');
   };
   return (
-    <StyledNav>
+    <StyledNav variants={fadeIn} initial="hidden" animate="show">
       <form>
         <input
           onChange={inputHandler}
@@ -43,12 +48,11 @@ const Nav = () => {
 };
 
 const StyledNav = styled(motion.div)`
-  padding: 3rem 0rem;
+  padding-top: 3rem;
   text-align: center;
-
   input {
     width: 30%;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     padding: 0.5rem 1.5rem;
     border: none;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
@@ -57,22 +61,24 @@ const StyledNav = styled(motion.div)`
     font-family: 'Montserrat', sans-serif;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
+    @media (max-width: 700px) {
+      width: 70%;
+    }
   }
   button {
-    font-size: 1.5rem;
-    padding: 0.5rem 2rem;
-    border: 1px solid transparent;
+    font-size: 1.3rem;
+    padding: 0.5rem 1.5rem;
+    border: none;
     outline: none;
     cursor: pointer;
     background: #262626;
     color: #fff;
-    transition: all 0.5s ease-in;
+    transition: all 0.2s ease-in;
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
     &:hover {
       background: #fff;
       color: #262626;
-      border: 1px solid #262626;
     }
   }
 `;

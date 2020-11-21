@@ -8,6 +8,8 @@ import { motion } from 'framer-motion';
 import { useHistory } from 'react-router-dom';
 //Util
 import { imageAvailability } from '../util';
+//Animations
+import { lineAnim } from '../animation';
 
 const BookDetails = ({ id }) => {
   //Exit Detail
@@ -35,7 +37,11 @@ const BookDetails = ({ id }) => {
                 src={imageAvailability(bookDetail.volumeInfo.imageLinks)}
                 alt="book cover"
               />
-              <a href={bookDetail.accessInfo.webReaderLink} target="_blank">
+              <a
+                href={bookDetail.accessInfo.webReaderLink}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <button className="buy">Read now</button>
               </a>
             </Cover>
@@ -44,31 +50,31 @@ const BookDetails = ({ id }) => {
                 <h2>{bookDetail.volumeInfo.title}</h2>
                 <h3>{bookDetail.volumeInfo.authors}</h3>
               </Main>
-              <Line />
+              <Line variants={lineAnim} initial="hidden" animate="show" />
               <Description>
                 <h2>About the book</h2>
                 <p>{bookDetail.volumeInfo.description}</p>
               </Description>
-              <Line />
+              <Line variants={lineAnim} initial="hidden" animate="show" />
               <Other>
                 <h2>Other info</h2>
+                <h3>
+                  Language
+                  <span>{bookDetail.volumeInfo.language.toUpperCase()}</span>
+                </h3>
+                <h3>
+                  Publisher
+                  <span>{bookDetail.volumeInfo.publisher}</span>
+                </h3>
+                <h3>
+                  Page count
+                  <span>{bookDetail.volumeInfo.pageCount}</span>
+                </h3>
+                <h3>
+                  Published
+                  <span>{bookDetail.volumeInfo.publishedDate}</span>
+                </h3>
               </Other>
-              <h3>
-                Language
-                <span>{bookDetail.volumeInfo.language.toUpperCase()}</span>
-              </h3>
-              <h3>
-                Publisher
-                <span>{bookDetail.volumeInfo.publisher}</span>
-              </h3>
-              <h3>
-                Page count
-                <span>{bookDetail.volumeInfo.pageCount}</span>
-              </h3>
-              <h3>
-                Published
-                <span>{bookDetail.volumeInfo.publishedDate}</span>
-              </h3>
             </BookInfo>
           </Details>
         </CardShadow>
@@ -90,9 +96,9 @@ const Details = styled(motion.div)`
   position: absolute;
   display: flex;
   justify-content: space-between;
+  top: 5%;
   left: 20%;
   right: 20%;
-  top: 10%;
   padding: 1rem 1rem;
   background-color: white;
   border-radius: 1rem;
@@ -107,13 +113,12 @@ const Cover = styled(motion.div)`
   button {
     margin-top: 2rem;
     margin-bottom: 1rem;
-
     padding: 1rem 2rem;
     border: none;
     outline: none;
     background-color: #262626;
     color: #fff;
-    transition: all 0s ease-in-out;
+    transition: all 0.5s ease-in-out;
     border-radius: 1rem;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
@@ -130,10 +135,18 @@ const BookInfo = styled(motion.div)`
   display: flex;
   flex-direction: column;
   width: 100%;
+  h2 {
+    padding-bottom: 1rem;
+  }
 `;
 const Main = styled(motion.div)``;
 const Description = styled(motion.div)``;
-const Other = styled(motion.div)``;
+const Other = styled(motion.div)`
+  width: 50%;
+  h3 {
+    margin-bottom: 0.8rem;
+  }
+`;
 const Line = styled(motion.div)`
   width: 100%;
   height: 0.15rem;

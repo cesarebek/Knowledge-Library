@@ -10,6 +10,8 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 //Util
 import { imageAvailability } from '../util';
+//Animations
+import { popBooks } from '../animation';
 
 const Book = ({ title, authors, image, id }) => {
   const dispatch = useDispatch();
@@ -21,7 +23,15 @@ const Book = ({ title, authors, image, id }) => {
   };
 
   return (
-    <Card onClick={detailHandler} layoutId={id}>
+    <Card
+      onClick={detailHandler}
+      layoutId={id}
+      variants={popBooks}
+      initial="hidden"
+      animate="show"
+      whileHover="hover"
+      whileTap="tap"
+    >
       <Link to={`/game/${id}`}>
         <Description>
           <motion.img
@@ -55,6 +65,11 @@ const Description = styled(motion.div)`
   img {
     height: 30vh;
   }
+  @media (max-width: 700px) {
+    img {
+      height: 25vh;
+    }
+  }
 `;
 const Info = styled(motion.div)`
   display: flex;
@@ -62,6 +77,9 @@ const Info = styled(motion.div)`
   padding: 1rem 2rem;
   h2 {
     padding-bottom: 2rem;
+    @media (max-width: 700px) {
+      padding-bottom: 1rem;
+    }
   }
 `;
 

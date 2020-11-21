@@ -3,6 +3,7 @@ import React from 'react';
 import Nav from '../components/Nav';
 import Book from '../components/Book';
 import BookDetails from '../components/BookDetails';
+import Ragazza from '../components/ragazza';
 //React-Redux
 import { useSelector } from 'react-redux';
 //Styles and animation
@@ -34,13 +35,26 @@ const Home = () => {
             />
           ))}
         </AnimateSharedLayout>
+        <Ragazza />
       </BookList>
     </>
   );
 };
 
 const BookList = styled(motion.div)`
-  padding: 5rem 30rem;
+  padding: 3.5rem 15rem 5rem 45rem;
   min-height: 80vh;
+  @media (max-width: 1500px) {
+    padding: 3.5rem 10rem 5rem 40rem;
+  }
+  @media (max-width: 1300px) {
+    padding: 3.5rem 8rem 5rem 35rem;
+  }
+  @media (max-width: 1100px) {
+    padding: 3.5rem 8rem 5rem 8rem;
+  }
+  @media (max-width: 700px) {
+    padding: 3.5rem 1.2rem 2rem 1.2rem;
+  }
 `;
 export default Home;
