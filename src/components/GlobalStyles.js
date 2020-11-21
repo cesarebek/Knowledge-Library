@@ -16,15 +16,21 @@ h2{
     color: #333;
 }
 h3{
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: #252525;
+    font-weight: 500;
     
 
 }
 p{
     font-size: 1.2rem;
-    line-height: 200%;
+    line-height: 130%;
     color: #696969;
+}
+span{
+    font-size: 1.2rem;
+    color: #696969;
+    padding-left: 2rem;
 }
 `;
 

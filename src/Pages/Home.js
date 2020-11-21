@@ -15,6 +15,7 @@ const Home = () => {
   const location = useLocation();
   const pathId = location.pathname.split('/')[2];
   const { searched } = useSelector((state) => state.books);
+
   return (
     <>
       <Nav />
@@ -27,7 +28,7 @@ const Home = () => {
             <Book
               title={book.volumeInfo.title}
               authors={book.volumeInfo.authors}
-              image={book.volumeInfo.imageLinks.thumbnail}
+              image={book.volumeInfo.imageLinks}
               id={book.id}
               key={book.id}
             />

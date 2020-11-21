@@ -61,16 +61,18 @@ const StyledNav = styled(motion.div)`
   button {
     font-size: 1.5rem;
     padding: 0.5rem 2rem;
-    border: none;
+    border: 1px solid transparent;
     outline: none;
     cursor: pointer;
-    background: #f5d554;
-    color: #2b2b2b;
-    transition: all 0.5s ease;
+    background: #262626;
+    color: #fff;
+    transition: all 0.5s ease-in;
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
     &:hover {
-      background: #f5c254;
+      background: #fff;
+      color: #262626;
+      border: 1px solid #262626;
     }
   }
 `;

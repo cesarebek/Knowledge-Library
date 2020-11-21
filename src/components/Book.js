@@ -8,6 +8,8 @@ import { loadDetail } from '../actions/detailAction';
 import { useDispatch } from 'react-redux';
 //Route
 import { Link } from 'react-router-dom';
+//Util
+import { imageAvailability } from '../util';
 
 const Book = ({ title, authors, image, id }) => {
   const dispatch = useDispatch();
@@ -22,11 +24,13 @@ const Book = ({ title, authors, image, id }) => {
     <Card onClick={detailHandler} layoutId={id}>
       <Link to={`/game/${id}`}>
         <Description>
-          <img src={image} alt={image} />
+          <motion.img
+            layoutId={`image${id}`}
+            src={imageAvailability(image)}
+            alt="cover"
+          />
           <Info>
-            <h2>Title:</h2>
-            <h3>{title}</h3>
-            <h2>Author:</h2>
+            <h2>{title}</h2>
             <h3>{authors}</h3>
           </Info>
         </Description>
@@ -56,7 +60,7 @@ const Info = styled(motion.div)`
   display: flex;
   flex-direction: column;
   padding: 1rem 2rem;
-  h3 {
+  h2 {
     padding-bottom: 2rem;
   }
 `;

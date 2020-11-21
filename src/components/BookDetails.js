@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 //Route
 import { useHistory } from 'react-router-dom';
+//Util
+import { imageAvailability } from '../util';
 
 const BookDetails = ({ id }) => {
   //Exit Detail
@@ -20,6 +22,7 @@ const BookDetails = ({ id }) => {
   };
 
   const { bookDetail, isLoading } = useSelector((state) => state.details);
+
   return (
     <>
       {/* isLoading STATE allows me to show the details ONLY when detailsData area correctly
@@ -27,23 +30,46 @@ const BookDetails = ({ id }) => {
       {!isLoading && (
         <CardShadow onClick={exitDetailHandler} className="shadow">
           <Details layoutId={id}>
-            <img
-              src={bookDetail.volumeInfo.imageLinks.thumbnail}
-              alt="book cover"
-            />
-            <h2>TITLE:</h2>
-            <h3>{bookDetail.volumeInfo.title}</h3>
-            <h2>RATING:</h2>
-            <h3>{bookDetail.volumeInfo.averageRating}</h3>
-            <h2>Language:</h2>
-            <h3>{bookDetail.volumeInfo.language.toUpperCase()}</h3>
-            <h2>PUBLISHER:</h2>
-            <h3>{bookDetail.volumeInfo.publisher}</h3>
-            <h2>PUBLISH DATE:</h2>
-            <h3>{bookDetail.volumeInfo.publishedDate}</h3>
-            <h3>Page Count: {bookDetail.volumeInfo.pageCount} pages</h3>
-            <h2>DESCRIPTION:</h2>
-            <h3>{bookDetail.volumeInfo.description}</h3>
+            <Cover>
+              <motion.img
+                src={imageAvailability(bookDetail.volumeInfo.imageLinks)}
+                alt="book cover"
+              />
+              <a href={bookDetail.accessInfo.webReaderLink} target="_blank">
+                <button className="buy">Read now</button>
+              </a>
+            </Cover>
+            <BookInfo>
+              <Main>
+                <h2>{bookDetail.volumeInfo.title}</h2>
+                <h3>{bookDetail.volumeInfo.authors}</h3>
+              </Main>
+              <Line />
+              <Description>
+                <h2>About the book</h2>
+                <p>{bookDetail.volumeInfo.description}</p>
+              </Description>
+              <Line />
+              <Other>
+                <h2>Other info</h2>
+              </Other>
+              <h3>
+                Language
+                <span>{bookDetail.volumeInfo.language.toUpperCase()}</span>
+              </h3>
+              <h3>
+                Publisher
+                <span>{bookDetail.volumeInfo.publisher}</span>
+              </h3>
+              <h3>
+                Page count
+                <span>{bookDetail.volumeInfo.pageCount}</span>
+              </h3>
+              <h3>
+                Published
+                <span>{bookDetail.volumeInfo.publishedDate}</span>
+              </h3>
+            </BookInfo>
           </Details>
         </CardShadow>
       )}
@@ -61,20 +87,58 @@ const CardShadow = styled(motion.div)`
   z-index: 10;
 `;
 const Details = styled(motion.div)`
-  width: 80vw;
-  border-radius: 1rem;
-  padding: 2rem 5rem;
-  background: white;
   position: absolute;
-  top: 5%;
-  left: 10%;
-  right: 10%;
-  color: black;
-  h3 {
-    padding-bottom: 1rem;
-  }
+  display: flex;
+  justify-content: space-between;
+  left: 20%;
+  right: 20%;
+  top: 10%;
+  padding: 1rem 1rem;
+  background-color: white;
+  border-radius: 1rem;
+`;
+const Cover = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   img {
-    text-align: center;
+    height: 40vh;
+  }
+  button {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+
+    padding: 1rem 2rem;
+    border: none;
+    outline: none;
+    background-color: #262626;
+    color: #fff;
+    transition: all 0s ease-in-out;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    &:hover {
+      border: 1px #262626 solid;
+      background: white;
+      color: #262626;
+    }
   }
 `;
+const BookInfo = styled(motion.div)`
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+const Main = styled(motion.div)``;
+const Description = styled(motion.div)``;
+const Other = styled(motion.div)``;
+const Line = styled(motion.div)`
+  width: 100%;
+  height: 0.15rem;
+  background-color: #c6c6c6;
+  margin: 1.5rem 0;
+`;
+
 export default BookDetails;
