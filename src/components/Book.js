@@ -19,7 +19,7 @@ const Book = ({ title, authors, image, id }) => {
   };
 
   return (
-    <Card onClick={detailHandler}>
+    <Card onClick={detailHandler} layoutId={id}>
       <Link to={`/game/${id}`}>
         <Description>
           <img src={image} alt={image} />

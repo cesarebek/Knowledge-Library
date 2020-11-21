@@ -7,7 +7,7 @@ import BookDetails from '../components/BookDetails';
 import { useSelector } from 'react-redux';
 //Styles and animation
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion';
 //Router
 import { useLocation } from 'react-router-dom';
 
@@ -19,16 +19,20 @@ const Home = () => {
     <>
       <Nav />
       <BookList>
-        {pathId && <BookDetails />}
-        {searched.map((book) => (
-          <Book
-            title={book.volumeInfo.title}
-            authors={book.volumeInfo.authors}
-            image={book.volumeInfo.imageLinks.thumbnail}
-            id={book.id}
-            key={book.id}
-          />
-        ))}
+        <AnimateSharedLayout type="crossfade">
+          <AnimatePresence>
+            {pathId && <BookDetails id={pathId} />}
+          </AnimatePresence>
+          {searched.map((book) => (
+            <Book
+              title={book.volumeInfo.title}
+              authors={book.volumeInfo.authors}
+              image={book.volumeInfo.imageLinks.thumbnail}
+              id={book.id}
+              key={book.id}
+            />
+          ))}
+        </AnimateSharedLayout>
       </BookList>
     </>
   );

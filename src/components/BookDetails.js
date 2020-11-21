@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 //Route
 import { useHistory } from 'react-router-dom';
 
-const BookDetails = () => {
+const BookDetails = ({ id }) => {
   //Exit Detail
   const history = useHistory();
 
@@ -26,7 +26,7 @@ const BookDetails = () => {
       fetched and ready to be rendered without inccoring in undefined errors. */}
       {!isLoading && (
         <CardShadow onClick={exitDetailHandler} className="shadow">
-          <Details>
+          <Details layoutId={id}>
             <img
               src={bookDetail.volumeInfo.imageLinks.thumbnail}
               alt="book cover"
@@ -67,8 +67,8 @@ const Details = styled(motion.div)`
   background: white;
   position: absolute;
   top: 5%;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 10%;
+  right: 10%;
   color: black;
   h3 {
     padding-bottom: 1rem;
