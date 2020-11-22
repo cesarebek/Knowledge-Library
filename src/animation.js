@@ -44,8 +44,34 @@ export const lineAnim = {
   show: {
     width: '100%',
     transition: {
-      ease: 'ease-in',
+      ease: 'easeIn',
       duration: 0.5,
+    },
+  },
+};
+
+export const closeTab = {
+  hidden: {
+    rotate: 0,
+    scale: 1,
+  },
+  hover: {
+    rotate: 90,
+    transition: {
+      duration: 0.6,
+    },
+  },
+};
+
+export const socialAnim = {
+  hidden: {
+    scale: 1,
+  },
+  hover: {
+    scale: 1.2,
+    transition: {
+      duration: 0.2,
+      ease: 'easeInOut',
     },
   },
 };

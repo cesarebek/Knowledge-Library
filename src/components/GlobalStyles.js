@@ -8,6 +8,9 @@ const GlobalStyles = createGlobalStyle`
 }
 body{
     font-family: 'Montserrat', sans-serif;
+    @media (max-width: 300px){
+        display:none;
+    }
 }
 h2{
     font-size: 2rem;

@@ -10,7 +10,7 @@ const ragazza = () => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g id="undraw_book_lover_mkck 1" clip-path="url(#clip0)">
+        <g id="undraw_book_lover_mkck 1" clipPath="url(#clip0)">
           <path
             id="Vector"
             opacity="0.1"
@@ -788,21 +788,21 @@ const ragazza = () => {
             opacity="0.1"
             d="M400.991 314.265C400.991 314.265 417.718 321.278 428.749 305.759"
             stroke="black"
-            stroke-miterlimit="10"
+            strokeMiterlimit="10"
           />
           <path
             id="Vector_142"
             opacity="0.1"
             d="M404.282 326.522C404.282 326.522 417.943 317.646 435.345 326.231"
             stroke="black"
-            stroke-miterlimit="10"
+            strokeMiterlimit="10"
           />
           <path
             id="Vector_143"
             opacity="0.1"
             d="M312.839 324.507C312.839 324.507 318.576 311.577 333.896 321.437"
             stroke="black"
-            stroke-miterlimit="10"
+            strokeMiterlimit="10"
           />
           <path
             id="Vector_144"
@@ -1000,9 +1000,9 @@ const ragazza = () => {
             y2="-4.30554e-06"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#808080" stop-opacity="0.25" />
-            <stop offset="0.54" stop-color="#808080" stop-opacity="0.12" />
-            <stop offset="1" stop-color="#808080" stop-opacity="0.1" />
+            <stop stopColor="#808080" stopOpacity="0.25" />
+            <stop offset="0.54" stopColor="#808080" stopOpacity="0.12" />
+            <stop offset="1" stopColor="#808080" stopOpacity="0.1" />
           </linearGradient>
           <clipPath id="clip0">
             <rect width="676" height="537" fill="white" />

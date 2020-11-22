@@ -52,12 +52,18 @@ const Book = ({ title, authors, image, id }) => {
 const Card = styled(motion.div)`
   overflow: hidden;
   margin-bottom: 3rem;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
   border-radius: 0.5rem;
   background-color: #fcfcfb;
   cursor: pointer;
   a {
     text-decoration: none;
+  }
+  @media (max-width: 1000px) {
+    margin-bottom: 4rem;
+  }
+  @media (max-width: 450px) {
+    margin-bottom: 3.5rem;
   }
 `;
 const Description = styled(motion.div)`
@@ -77,8 +83,27 @@ const Info = styled(motion.div)`
   padding: 1rem 2rem;
   h2 {
     padding-bottom: 2rem;
-    @media (max-width: 700px) {
+  }
+  @media (max-width: 1000px) {
+    h2 {
+      font-size: 1.6rem;
+    }
+    h3 {
+      font-size: 1rem;
+    }
+  }
+  @media (max-width: 700px) {
+    h2 {
       padding-bottom: 1rem;
+    }
+  }
+  @media (max-width: 450px) {
+    padding: 1rem 1rem 0.5rem 0.5rem;
+    h2 {
+      font-size: 1.2rem;
+    }
+    h3 {
+      font-size: 0.9rem;
     }
   }
 `;

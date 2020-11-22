@@ -9,7 +9,9 @@ import { useHistory } from 'react-router-dom';
 //Util
 import { imageAvailability } from '../util';
 //Animations
-import { lineAnim } from '../animation';
+import { lineAnim, closeTab } from '../animation';
+//Images
+import close from '../img/close.svg';
 
 const BookDetails = ({ id }) => {
   //Exit Detail
@@ -20,10 +22,21 @@ const BookDetails = ({ id }) => {
     if (element.classList.contains('shadow')) {
       document.body.style.overflow = 'auto';
       history.push('/');
+    } else if (element.classList.contains('close')) {
+      document.body.style.overflow = 'auto';
+      history.push('/');
     }
   };
 
   const { bookDetail, isLoading } = useSelector((state) => state.details);
+  //Book description check
+  const descCheck = () => {
+    if (bookDetail.volumeInfo.description === undefined) {
+      return <p>Description of this book is not available.</p>;
+    } else {
+      return <p>{bookDetail.volumeInfo.description}</p>;
+    }
+  };
 
   return (
     <>
@@ -53,7 +66,7 @@ const BookDetails = ({ id }) => {
               <Line variants={lineAnim} initial="hidden" animate="show" />
               <Description>
                 <h2>About the book</h2>
-                <p>{bookDetail.volumeInfo.description}</p>
+                {descCheck()}
               </Description>
               <Line variants={lineAnim} initial="hidden" animate="show" />
               <Other>
@@ -76,12 +89,32 @@ const BookDetails = ({ id }) => {
                 </h3>
               </Other>
             </BookInfo>
+            <CloseTab onClick={exitDetailHandler}>
+              <motion.img
+                src={close}
+                alt="close-tab"
+                variants={closeTab}
+                initial="hidden"
+                whileHover="hover"
+                className="close"
+              />
+            </CloseTab>
           </Details>
         </CardShadow>
       )}
     </>
   );
 };
+const CloseTab = styled(motion.div)`
+  position: absolute;
+  padding: 0.3rem 0.3rem 0 0;
+  cursor: pointer;
+  text-align: center;
+  right: 0%;
+  top: 0%;
+  border-bottom-left-radius: 0.5rem;
+`;
+
 const CardShadow = styled(motion.div)`
   width: 100%;
   min-height: 100vh;
@@ -93,6 +126,7 @@ const CardShadow = styled(motion.div)`
   z-index: 10;
 `;
 const Details = styled(motion.div)`
+  position: relative;
   position: absolute;
   display: flex;
   justify-content: space-between;
@@ -102,6 +136,29 @@ const Details = styled(motion.div)`
   padding: 1rem 1rem;
   background-color: white;
   border-radius: 1rem;
+  overflow: hidden;
+  @media (max-width: 1200px) {
+    left: 15%;
+    right: 15%;
+    top: 5%;
+  }
+  @media (max-width: 1000px) {
+    h2 {
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 1rem;
+    }
+    span {
+      font-size: 1rem;
+    }
+  }
+  @media (max-width: 450px) {
+    left: 5%;
+    right: 5%;
+    top: 5%;
+    margin-bottom: 5%;
+  }
 `;
 const Cover = styled(motion.div)`
   display: flex;
@@ -109,14 +166,13 @@ const Cover = styled(motion.div)`
   align-items: center;
   img {
     height: 40vh;
+    margin-bottom: 1.5rem;
   }
   button {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
     padding: 1rem 2rem;
     border: none;
     outline: none;
-    background-color: #262626;
+    background-color: #5992e5;
     color: #fff;
     transition: all 0.5s ease-in-out;
     border-radius: 1rem;
@@ -124,10 +180,12 @@ const Cover = styled(motion.div)`
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     &:hover {
-      border: 1px #262626 solid;
-      background: white;
-      color: #262626;
+      background: #34315d;
+      color: #fff;
     }
+  }
+  @media (max-width: 1000px) {
+    display: none;
   }
 `;
 const BookInfo = styled(motion.div)`
@@ -138,20 +196,23 @@ const BookInfo = styled(motion.div)`
   h2 {
     padding-bottom: 1rem;
   }
+  @media (max-width: 450px) {
+    padding: 0rem 0.7rem;
+  }
 `;
 const Main = styled(motion.div)``;
 const Description = styled(motion.div)``;
 const Other = styled(motion.div)`
-  width: 50%;
   h3 {
     margin-bottom: 0.8rem;
   }
 `;
 const Line = styled(motion.div)`
   width: 100%;
-  height: 0.15rem;
-  background-color: #c6c6c6;
+  height: 0.2rem;
+  background: linear-gradient(45deg, #34315d, #5992e5);
   margin: 1.5rem 0;
+  border-radius: 1rem;
 `;
 
 export default BookDetails;

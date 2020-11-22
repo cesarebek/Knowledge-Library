@@ -51,7 +51,7 @@ const StyledNav = styled(motion.div)`
   padding-top: 3rem;
   text-align: center;
   input {
-    width: 30%;
+    width: 35%;
     font-size: 1.3rem;
     padding: 0.5rem 1.5rem;
     border: none;
@@ -61,8 +61,16 @@ const StyledNav = styled(motion.div)`
     font-family: 'Montserrat', sans-serif;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
+
+    @media (max-width: 1100px) {
+      width: 40%;
+    }
     @media (max-width: 700px) {
-      width: 70%;
+      width: 50%;
+    }
+    @media (max-width: 600px) {
+      font-size: 1rem;
+      width: 60%;
     }
   }
   button {
@@ -71,14 +79,16 @@ const StyledNav = styled(motion.div)`
     border: none;
     outline: none;
     cursor: pointer;
-    background: #262626;
+    background: #5992e5;
     color: #fff;
     transition: all 0.2s ease-in;
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
     &:hover {
-      background: #fff;
-      color: #262626;
+      background: #34315d;
+    }
+    @media (max-width: 600px) {
+      font-size: 1.1rem;
     }
   }
 `;
