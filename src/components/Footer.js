@@ -22,7 +22,7 @@ const Footer = () => {
         </ul>
       </Contact>
       <Copyright>
-        <h3>Developed with 💙 by Cezary</h3>
+        <h3>Developed with 💙 by Cezary Bek</h3>
       </Copyright>
       <Social>
         <h2>Social</h2>
@@ -77,7 +77,7 @@ const StyledFooter = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(52, 49, 93, 0.6);
   color: white;
   h2,
   h3 {
@@ -89,6 +89,10 @@ const StyledFooter = styled.div`
   li {
     list-style: none;
   }
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    padding: 0.5rem 2rem;
+  }
 `;
 
 const Contact = styled.div`
@@ -96,10 +100,19 @@ const Contact = styled.div`
     line-height: 150%;
     font-size: 1.1rem;
   }
+  @media (max-width: 1000px) {
+    h2 {
+      text-align: center;
+    }
+  }
 `;
 
 const Copyright = styled.div`
   align-self: flex-end;
+  @media (max-width: 1000px) {
+    align-self: center;
+    padding: 1.5rem 0;
+  }
 `;
 
 const Social = styled.div`

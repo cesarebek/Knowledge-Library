@@ -11,6 +11,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 //Animations
 import { fadeIn } from '../animation';
+//Images
+import logo from '../img/logo.svg';
 
 const Nav = () => {
   //FETCH books from API
@@ -30,8 +32,14 @@ const Nav = () => {
     }
     setTextInput('');
   };
+  const clearSearch = () => {
+    dispatch({ type: 'CLEAR_SEARCH' });
+  };
+
   return (
     <StyledNav variants={fadeIn} initial="hidden" animate="show">
+      <img src={logo} alt="logo" onClick={clearSearch} />
+
       <form>
         <input
           onChange={inputHandler}
@@ -50,6 +58,14 @@ const Nav = () => {
 const StyledNav = styled(motion.div)`
   padding-top: 3rem;
   text-align: center;
+  position: relative;
+  img {
+    position: absolute;
+    width: 5rem;
+    cursor: pointer;
+    left: 15%;
+    top: 2rem;
+  }
   input {
     width: 35%;
     font-size: 1.3rem;
@@ -89,6 +105,15 @@ const StyledNav = styled(motion.div)`
     }
     @media (max-width: 600px) {
       font-size: 1.1rem;
+    }
+  }
+  @media (max-width: 1100px) {
+    padding-top: 8.5rem;
+    img {
+      width: 5rem;
+      left: 50%;
+      top: 2rem;
+      transform: translateX(-50%);
     }
   }
 `;

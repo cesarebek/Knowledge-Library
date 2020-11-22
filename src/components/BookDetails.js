@@ -55,7 +55,7 @@ const BookDetails = ({ id }) => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <button className="buy">Read now</button>
+                <button>Read now</button>
               </a>
             </Cover>
             <BookInfo>
@@ -67,6 +67,13 @@ const BookDetails = ({ id }) => {
               <Description>
                 <h2>About the book</h2>
                 {descCheck()}
+                <a
+                  href={bookDetail.accessInfo.webReaderLink}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <button>Read now</button>
+                </a>
               </Description>
               <Line variants={lineAnim} initial="hidden" animate="show" />
               <Other>
@@ -130,7 +137,7 @@ const Details = styled(motion.div)`
   position: absolute;
   display: flex;
   justify-content: space-between;
-  top: 5%;
+  top: 10%;
   left: 20%;
   right: 20%;
   padding: 1rem 1rem;
@@ -140,9 +147,12 @@ const Details = styled(motion.div)`
   @media (max-width: 1200px) {
     left: 15%;
     right: 15%;
-    top: 5%;
+    top: 10%;
   }
   @media (max-width: 1000px) {
+    left: 15%;
+    right: 15%;
+    top: 10%;
     h2 {
       font-size: 1.5rem;
     }
@@ -156,7 +166,7 @@ const Details = styled(motion.div)`
   @media (max-width: 450px) {
     left: 5%;
     right: 5%;
-    top: 5%;
+    top: 10%;
     margin-bottom: 5%;
   }
 `;
@@ -196,12 +206,47 @@ const BookInfo = styled(motion.div)`
   h2 {
     padding-bottom: 1rem;
   }
-  @media (max-width: 450px) {
+  @media (max-width: 550px) {
     padding: 0rem 0.7rem;
   }
 `;
 const Main = styled(motion.div)``;
-const Description = styled(motion.div)``;
+const Description = styled(motion.div)`
+  @media (max-width: 1000px) {
+    display: flex;
+    flex-direction: column;
+    h2 {
+      align-self: flex-start;
+    }
+    p {
+      padding-bottom: 1rem;
+    }
+    align-items: center;
+    button {
+      justify-content: center;
+      padding: 1rem 2rem;
+      border: none;
+      outline: none;
+      background-color: #5992e5;
+      color: #fff;
+      transition: all 0.5s ease-in-out;
+      border-radius: 1rem;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      &:hover {
+        background: #34315d;
+        color: #fff;
+      }
+    }
+  }
+  @media (min-width: 1000px) {
+    button {
+      display: none;
+    }
+  } ;
+`;
+
 const Other = styled(motion.div)`
   h3 {
     margin-bottom: 0.8rem;

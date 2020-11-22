@@ -15,7 +15,6 @@ import { popBooks } from '../animation';
 
 const Book = ({ title, authors, image, id }) => {
   const dispatch = useDispatch();
-
   const detailHandler = () => {
     //This prevent the scrolling of the home when details are opened
     document.body.style.overflow = 'hidden';
@@ -31,6 +30,7 @@ const Book = ({ title, authors, image, id }) => {
       animate="show"
       whileHover="hover"
       whileTap="tap"
+      exit="exit"
     >
       <Link to={`/game/${id}`}>
         <Description>
@@ -97,7 +97,7 @@ const Info = styled(motion.div)`
       padding-bottom: 1rem;
     }
   }
-  @media (max-width: 450px) {
+  @media (max-width: 550px) {
     padding: 1rem 1rem 0.5rem 0.5rem;
     h2 {
       font-size: 1.2rem;

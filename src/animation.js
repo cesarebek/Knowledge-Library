@@ -35,6 +35,12 @@ export const popBooks = {
       duration: 0.4,
     },
   },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.75,
+    },
+  },
 };
 
 export const lineAnim = {

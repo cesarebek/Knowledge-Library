@@ -14,6 +14,11 @@ const bookReducer = (state = initState, action) => {
         ...state,
         bookLoading: true,
       };
+    case 'CLEAR_SEARCH':
+      return {
+        ...state,
+        searched: [],
+      };
     default:
       return {
         ...state,

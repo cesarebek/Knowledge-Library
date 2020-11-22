@@ -13,6 +13,8 @@ import styled from 'styled-components';
 import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion';
 //Router
 import { useLocation } from 'react-router-dom';
+//Images
+import alertSymbol from '../img/alertSymbol.svg';
 
 const Home = () => {
   const location = useLocation();
@@ -21,7 +23,13 @@ const Home = () => {
   //Book availability check
   const alert = () => {
     if (searched === undefined) {
-      console.log("Your Book doesn't exist");
+      return (
+        <Notification>
+          <img src={alertSymbol} alt="alert" />
+          <h1>Your book doesn't exist...</h1>
+          <h3>Please, try to search again.</h3>
+        </Notification>
+      );
     } else {
       return searched.map((book) => (
         <Book
@@ -81,5 +89,21 @@ const BookList = styled(motion.div)`
     padding: 3.5rem 1.5rem 2rem 1.5rem;
   }
 `;
-
+const Notification = styled(motion.div)`
+  text-align: center;
+  padding: 2rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  h3,
+  h1 {
+    color: #34315d;
+  }
+  border-radius: 1rem;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+  img {
+    width: 4rem;
+    padding-bottom: 1rem;
+  }
+`;
 export default Home;

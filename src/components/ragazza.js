@@ -1015,7 +1015,7 @@ const ragazza = () => {
 
 const Ragazza = styled.div`
   position: fixed;
-  top: 40vh;
+  bottom: 0;
   left: 0;
   z-index: -5;
 
